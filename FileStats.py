@@ -30,21 +30,16 @@ class FileStats:
         for o in whats_app_list:
             if o.get_name() == "Eoin Payne In The Ass":
                 convo_to_analyze = convo_to_analyze + o.get_message()
-
         tb1 = TextBlob(convo_to_analyze, analyzer=NaiveBayesAnalyzer())
-        tb2 = TextBlob(convo_to_analyze)
-        print("Convo analysis: ")
-        print(tb1.word_counts["fuck"])
-        print(tb1.sentiment)
-        print(tb2.sentiment)
-
-
+        value = (tb1.sentiment)
+        return value
 
 if __name__ == "__main__":
 
     fs = FileStats()
     # fs.control_test()
-    fs.sentiment_eval()
+    value  = fs.sentiment_eval()
+    print(value)
 
 
 

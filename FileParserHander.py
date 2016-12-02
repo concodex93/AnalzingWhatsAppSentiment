@@ -21,19 +21,6 @@ class FileParserHandler:
 
     def __init__(self):
         pass
-
-    def remove_all_extra(self):
-
-        content = read_file()
-
-        for line in content:
-            mod_line_one = line.replace(",", "")
-            mod_line_two = mod_line_one.replace(":", "")
-            mod_line_three = mod_line_two.replace("-", "")
-            self.all_extra_removed_list.append(mod_line_three)
-
-        return self.all_extra_removed_list
-
     # Splits string at dash
     # Allows access to name and message data in line
     def split_at_regex(self):
