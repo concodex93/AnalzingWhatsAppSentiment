@@ -1,6 +1,8 @@
 import pandas as pd
 from textblob import TextBlob
 from FileParserHander import FileParserHandler
+from textblob import TextBlob
+from textblob.sentiments import NaiveBayesAnalyzer
 
 class FileStats:
 
@@ -11,10 +13,10 @@ class FileStats:
 
     # Control Test
     def control_test(self):
-        convo_to_analyze1 = "I am happy today!"
-        convo_to_analyze2 = "I am sad today!"
-        tb1 = TextBlob(convo_to_analyze1)
-        tb2 = TextBlob(convo_to_analyze2)
+        convo_to_analyze1 = "Today is a good day"
+        convo_to_analyze2 = "I am sorry for your loss"
+        tb1 = TextBlob(convo_to_analyze1,analyzer=NaiveBayesAnalyzer() )
+        tb2 = TextBlob(convo_to_analyze2, analyzer=NaiveBayesAnalyzer())
         print("This is a test:")
         print(tb1.sentiment)
         print(tb2.sentiment)
@@ -29,17 +31,19 @@ class FileStats:
             if o.get_name() == "Eoin Payne In The Ass":
                 convo_to_analyze = convo_to_analyze + o.get_message()
 
-        tb = TextBlob(convo_to_analyze)
+        tb1 = TextBlob(convo_to_analyze, analyzer=NaiveBayesAnalyzer())
+        tb2 = TextBlob(convo_to_analyze)
         print("Convo analysis: ")
-        print(tb.sentiment)
-
+        print(tb1.word_counts["fuck"])
+        print(tb1.sentiment)
+        print(tb2.sentiment)
 
 
 
 if __name__ == "__main__":
 
     fs = FileStats()
-    fs.control_test()
+    # fs.control_test()
     fs.sentiment_eval()
 
 
